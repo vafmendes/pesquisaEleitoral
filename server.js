@@ -10,7 +10,6 @@ mongoose.connect(process.env.CONNECTIONSTRING, {useNewUrlParser: true, useUnifie
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const routes = require('./routes');
 const path = require('path');
@@ -25,7 +24,6 @@ const port = process.env.PORT;
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'public')));
-app.use(bodyParser.json());
 
 const sessionOption = session({
     secret: 'secrets_sessions',
@@ -49,9 +47,9 @@ app.use(csrfMiddleware);
 app.use(routes);
 
 app.on('pronto', ()=>{
-    app.listen(port, () =>{
-        console.log(`Acessar http://localhost:${port}`);
-        console.log('Servidor executando na porta 3000');
+    app.listen('8000', () =>{
+        console.log(`Acessar http://localhost:8000`);
+        console.log('Servidor executando na porta 8000');
     });
 });
 

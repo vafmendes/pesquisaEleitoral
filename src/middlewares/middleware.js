@@ -2,7 +2,7 @@
 exports.middewareGlobal = (req, res, next)=>{
     res.locals.errors = req.flash('errors');
     res.locals.success = req.flash('success');
-    res.locals.user = req.session.user;
+    res.locals.file = req.session.file;
     next();
 };
 
