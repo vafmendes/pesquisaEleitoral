@@ -8,7 +8,7 @@ const fs = require('fs');
 
 /**********EXPORTING FUNCTION FOR Register ROUTE******************/
 module.exports.index = function(req, res){
-  return res.render("index");
+  return res.render("../views/index");
 }
 
 module.exports.upload = async (req, res) => {

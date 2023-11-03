@@ -1,20 +1,25 @@
 /** ------------------ IMPORTING PACKAGE/MODELS ------------------ **/
 const csvParser = require('csv-parser');
-const Csv= require('../models/ArquivosModel');
+const Arquivos= require('../models/ArquivosModel');
 const path = require('path');
 
 /** ------------------ EXPORTING FUNCTION To upload a file ------------------ **/
+module.exports.index2 = function(req, res){
+    return res.render("../views/upload");
+  }
+
 module.exports.upload = async (req, res) => {
-    const csv = new Csv(req.body);
+    const arquivos = new Arquivos(req.body);
     try{
-        await cadastro.register();
-        if(csv.errors.length > 0){
-            req.flash('errors', csv.errors);
+        await arquivos.register();
+        if(arquivos.errors.length > 0){
+            req.flash('errors', arquivos.errors);
             req.session.save(()=>{
                 return res.redirect('back');
             });
         }
         req.flash('success', 'Seus dados foram importados');
+        req.session.file = arquivos.file;
             req.session.save(() =>{
                 return res.redirect('back');
             })
