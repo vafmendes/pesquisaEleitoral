@@ -1,10 +1,8 @@
-const multer = require('multer');
 const path = require('path');
 //trabalhando com middleware
 exports.middewareGlobal = (req, res, next)=>{
     res.locals.errors = req.flash('errors');
     res.locals.success = req.flash('success');
-    res.locals.file = req.session.file;
     next();
 };
 
