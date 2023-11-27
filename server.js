@@ -14,7 +14,7 @@ const flash = require('connect-flash');
 const routes = require('./routes');
 const path = require('path');
 const csurf = require('csurf');
-const {middewareGlobal, checkCsrfError, csrfMiddleware} = require('./src/middlewares/middleware');
+const {middewareGlobal} = require('./src/middlewares/middleware');
 const port = process.env.PORT;
 
 
@@ -40,10 +40,8 @@ app.use(flash());
 app.set('views', path.resolve(__dirname,'src', 'views'));
 app.set('view engine', 'ejs');
 
-app.use(csurf());
 app.use(middewareGlobal);
-app.use(checkCsrfError);
-app.use(csrfMiddleware);
+// app.use(checkCsrfError);
 app.use(routes);
 
 app.on('pronto', ()=>{
